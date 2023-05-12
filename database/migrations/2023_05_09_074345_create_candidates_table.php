@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
+            $table->foreignUlid('User_id');
+
+            $table->string('position');
+            $table->foreign('position')->references('Position')->on('positions');
+
+            $table->integer('votes');
+            $table->longText('slogan');
+            $table->string('path_to_image');
             $table->timestamps();
         });
     }

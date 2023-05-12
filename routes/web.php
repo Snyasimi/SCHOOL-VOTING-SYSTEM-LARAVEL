@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use PHPUnit\TextUI\Configuration\Group;
+use App\Http\Controllers\{UsersController,ApplicationsController,AuthController,CandidateController,};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('Candidates.index');
 });
+
+Route::resource('Users',Userscontroller::class);

@@ -3,16 +3,17 @@
 
 <section>
 
-    <div class="columns is-flex is-mobile">
+    <div class="columns  block is-flex is-mobile">
 
         <div class="column is-one-quarter mr-1">
 
             <header> 
-                <h2 class="subtitle is-2 py-4 mb-6 has-text-info">USER INFO</h2>
+                <h2 class="subtitle has-text-left is-3 py-4 mt-3 has-text-link">USER INFO</h2>
             </header>
+            <hr>
 
-            <table class="table is-bordered is-fullwidth">
-                <th colspan="2">
+            <table class="table box is-bordered is-fullwidth">
+                <th  class="has-text-centered has-text-info" colspan="2">
                     USER
                 </th>
                 <tbody>
@@ -33,16 +34,18 @@
                 
         </div>
         
-        <div class='column  ml-1'>
+        <div class='column ml-1'>
 
             <header>
-                <h2 class="subtitle is-2 py-4 mb-6 has-text-info">ALL CANDIDATES</h2>
-
+                <h2 class="has-text-left is-family-monospace subtitle is-3 py-4 mt-3 has-text-info">ALL CANDIDATES</h2>
+                
             </header>
-        
-            <div class="columns is-multiline">
 
-               @for($i=0;$i<8;$i++)
+            <hr>
+        
+            <div class="columns  is-multiline">
+
+               @for($i=0;$i<100;$i++)
 
                <div class="column block is-one-quarter">
                 <div class="box ">
