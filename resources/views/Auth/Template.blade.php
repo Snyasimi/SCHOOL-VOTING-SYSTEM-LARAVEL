@@ -16,7 +16,7 @@
     </div>
 
     <div class="navbar-start">
-        <a href="#" class="navbar-item ">Home</a>
+        <a href="{{ route('Home') }}" class="navbar-item ">Home</a>
         <a href="#" class="navbar-item ">About</a>
     </div>
 
@@ -25,9 +25,13 @@
         <div class="buttons">
 
 
-            <a class="button is-info">
+            <a href="{{ route('Signup') }}" class="button is-info">
               <strong>Sign up</strong>
             </a>
+
+            <a href="{{ route('login') }}" class="button is-info">
+                <strong>Login</strong>
+              </a>
 
           </div>
         </div>

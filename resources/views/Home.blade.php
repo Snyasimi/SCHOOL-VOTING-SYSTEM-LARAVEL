@@ -4,7 +4,8 @@
 <section>
 
     <div class="columns  block is-flex is-mobile">
-
+         
+        @auth
         <div class="column is-one-quarter mr-1">
 
             <header> 
@@ -33,6 +34,7 @@
             </table>
                 
         </div>
+        @endauth
         
         <div class='column ml-1'>
 
@@ -50,7 +52,7 @@
                <div class="column block is-one-quarter">
                 <div class="box ">
                     <p>STEVE SOLOMON NYASIMI</p>
-                    <div class="table-container">
+                    <div class="table-container mt-3">
                         <table class="table is-narrow">
                             <tbody>
                                 <tr>
@@ -77,11 +79,14 @@
                                         177
                                     </td>
                                 </tr>
+
+                                @auth
                                 <tr>
                                     <td class="is-size-7">
-                                        <a href="#" class="button is-small is-info">VIEW DETAILS</a>
+                                        <a href="{{ route('Candidate.show',[1])}}" class="button is-small is-info">VIEW DETAILS</a>
                                     </td>
                                 </tr>
+                                @endauth
         
         
                            </table>

@@ -2,26 +2,26 @@
 @section('body')
 
    <div class="container">
-    <div class="columns">
+    <div class="columns is-centered">
 
-        <div class="column">
+        <div class="column is-6">
 
-            <form  method="POST" class="box mx-5 my-6">
+            <form   action="{{ route('login') }}" method="POST" class="box  my-6">
                 @csrf
-                 <div class="field px-6 py-5 mt-6 mx-6 mb-2">
-                     <label class="label mx-6">
+                 <div class="field ">
+                     <label class="label my-4 mx-6">
                          Email
                          <div class="control ">
-                             <input class="input" type="email" required placeholder="xyz@gmail.com">
+                             <input class="input" type="email" name="email" value="{{old('email')}}" required placeholder="xyz@gmail.com">
                          </div> 
                      </label>
                  </div>
          
-                 <div class="field px-6 py-5 mb-3 mx-6">
-                     <label class="label mx-6">
+                 <div class="field  my-4">
+                     <label class="label my-4 mx-6">
                          Password
                          <div class="control">
-                             <input class="input" type="password" required placeholder="*********">
+                             <input class="input" type="password" name="password" required placeholder="*********">
                          </div> 
                          <p class="help">Password must have 6-8 characters</p>
                      </label>

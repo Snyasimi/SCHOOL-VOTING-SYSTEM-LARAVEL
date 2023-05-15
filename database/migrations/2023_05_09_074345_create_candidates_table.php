@@ -11,18 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->foreignUlid('User_id');
 
-            $table->string('position');
-            $table->foreign('position')->references('Position')->on('positions');
+            $table->string('Position');
+            $table->foreign('Position')->references('Position')->on('positions');
 
-            $table->integer('votes');
-            $table->longText('slogan');
+            $table->integer('Votes')->default(0);
+            $table->longText('Slogan');
             $table->string('path_to_image');
+            $table->string('path_to_application_letter');
+            $table->boolean('Application_status')->default(false);
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

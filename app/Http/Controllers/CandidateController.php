@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddCandidateRequest;
 use App\Models\Candidates;
+use App\Models\Positions;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -12,7 +14,8 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $Candidates = "";
+        $candidates = 1;
+        return view('Candidates.vote',['candidates' => $candidates]);
     }
 
     /**
@@ -20,15 +23,24 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('Candidate.create');
+        return view('Candidates.Apply');//,['positions' => Positions::lazy() ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddCandidateRequest $request)
     {
-        //
+        $validate = $request->validated();
+        dd($validate);
+        $Candidate = new  Candidates;
+        $Candidate->User_id = '01h0d29prpqw6jmhsgdp34s98g';//Auth::user()->User_id;
+        $Candidate->Position = $validate['Position'];
+        $Candidate->Slogan = $validate['Slogan'];
+        $Candidate->path_to_image = $validate['Image']->store('CandidateImgs');
+        $Candidate->path_to_application_letter = $validate['Application_letter']->store('Application_letters');
+        $Candidate->Votes = 0;
+        
     }
 
     /**
@@ -36,7 +48,7 @@ class CandidateController extends Controller
      */
     public function show(Candidates $candidates)
     {
-        //
+        return view('Candidate.show',['Candidate' => $candidates]);
     }
 
     /**
@@ -44,7 +56,7 @@ class CandidateController extends Controller
      */
     public function edit(Candidates $candidates)
     {
-        //
+        return view('Candidate.Apply',['candidate'=> $candidates]);
     }
 
     /**
@@ -52,7 +64,16 @@ class CandidateController extends Controller
      */
     public function update(Request $request, Candidates $candidates)
     {
-        //
+       
+        $validate = $request->validated();
+        dd($validate);
+        
+        $candidates->Position = $validate['Position'];
+        $candidates->Slogan = $validate['Slogan'];
+        $candidates->path_to_image = $validate['Image']->store('CandidateImgs');
+        $candidates->path_to_application_letter = $validate['Application_letter']->store('Application_letters');
+        
+
     }
 
     /**

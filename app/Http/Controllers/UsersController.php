@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -32,17 +33,17 @@ class UsersController extends Controller
 
         $validate = $request->validated();
 
-        dd($validate);
+        
         $user =  new User;
 
         $user->Name = $validate['Name'];
         $user->Email = $validate['Email'];
         $user->RegNumber = $validate['RegNo'];
-        $user->password = bcrypt($request->input('password'));
-            
-        
+        $user->password = bcrypt($validate['password']);
+        $user->save();
 
-        return view('Auth.Login');
+        Auth::login($user);
+        return redirect()->route('Home');
     }
 
     /**
