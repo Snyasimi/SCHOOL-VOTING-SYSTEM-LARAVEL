@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('candidates', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUlid('User_id');
+
+            $table->foreignUlid('User_id')->primary();
 
             $table->string('Position');
             $table->foreign('Position')->references('Position')->on('positions');

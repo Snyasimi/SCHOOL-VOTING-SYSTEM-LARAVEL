@@ -12,7 +12,7 @@
 </header> --}}
 
 
-<nav class="navbar is-link is-fixed-top mb-5">
+<nav class="navbar is-link is-fixed-top">
     <div class="navbar-brand ">
         <a href="#" class="navbar-item">
                 <img src="{{asset('storage/images.png')}}" alt="Mount Kenya University Logo"  width="130" >
@@ -23,38 +23,18 @@
 
         <div class="navbar-menu">
             <div class="navbar-start">
-                <!-- <a href="{{ route('Home') }}" class="navbar-item ">Home</a> -->
+                <a href="{{ route('Home') }}" class="navbar-item ">Home</a>
 
                 @auth
                 <a href="{{ route('Candidate.index')}}" class="navbar-item">Vote</a>
                 <a href="{{ route('Candidate.create')}}" class="navbar-item">Apply</a>
                 @endauth
                
-               
-
             </div>
-
-            <div class="container">
-
-                <p class="has-text-centered is-family-monospace is-size-2">
-                    MOUNT KENYA UNIVERSITY E-VOTING
-                </p>
-
-            </div>
-
             <div class="navbar-end">
                 
                 <div class="buttons">
-    
-                    
-                    <a href="{{ route('Signup') }}" class="button is-info">
-                      <strong>Sign up</strong>
-                    </a>
-    
-                    <a href="{{ route('login')}}"class="button  is-info">
-                      <strong>Log in</strong>
-                    </a>
-                    
+
                     @auth
                     <a href="{{route('logout')}}" class="button is-info">
                         <strong>Logout</strong>

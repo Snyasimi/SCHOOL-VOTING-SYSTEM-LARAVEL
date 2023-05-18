@@ -10,12 +10,13 @@ class Candidates extends Model
     use HasFactory;
 
     protected $hidden = [''];
+    protected $fillable = ['Application_status'];
 
 
-    public function user()
+    public function Voter()
     {
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'User_id');
 
     }
 }

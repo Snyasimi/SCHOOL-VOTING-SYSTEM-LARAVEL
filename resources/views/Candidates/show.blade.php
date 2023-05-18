@@ -1,4 +1,4 @@
-@extends('Template')
+@extends('Candidates.Template')
 
 @section('content')
 
@@ -10,10 +10,11 @@
 
                 <div class="container">
 
-                    <figure class="image is-1by1">
+                    <figure class="image is-4by3">
 
-                        <img src="{{asset('storage/skull.jpg')}}" alt="">
+                        <img src="{{asset(Storage::url($Candidate->path_to_image))}}" alt=" A Photo of {{ $Candidate->Voter->Name}}">
 
+                        <figcaption>{{ $Candidate->Voter->Name}}</figcaption>
                     </figure>
 
                 </div>
@@ -32,19 +33,19 @@
 
                         <tr>
                             <td>NAME</td>
-                            <td>SOLOMON NYASIMI</td>
+                            <td>{{$Candidate->Voter->Name}}</td>
                         </tr>
                         <tr>
                             <td>REGISTRATION NUMBER</td>
-                            <td>DIT/2021/78965</td>
+                            <td>{{$Candidate->Voter->RegNumber}}</td>
                         </tr>
                         <tr>
                             <td>POSITION</td>
-                            <td>CHAIRPERSON</td>
+                            <td>{{$Candidate->Position}}</td>
                         </tr>
                         <tr>
                             <td>VOTES</td>
-                            <td>220</td>
+                            <td>{{$Candidate->Votes}}</td>
                         </tr>
 
 

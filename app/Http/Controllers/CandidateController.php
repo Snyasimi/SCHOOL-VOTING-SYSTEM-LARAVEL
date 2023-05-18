@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddCandidateRequest;
 use App\Models\Candidates;
 use App\Models\Positions;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
@@ -14,8 +16,26 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $candidates = 1;
-        return view('Candidates.vote',['candidates' => $candidates]);
+
+        // $Candidates = Candidates::with('user')->chunk(100, function ($candidates) {
+        //     return view('Candidates.vote')->with([
+        //         'Chairpersons' => $candidates->where('Position', 'CHAIR PERSON')->where('Application_status', true)->get(),
+        //         'ViceChairs' => $candidates->where('Position', 'VICE CHAIR PERSON')->where('Application_status', true)->get(),
+        //         'Secretarygens' => $candidates->where('Position', 'SECRETARY GENERAL')->where('Application_status', true)->get(),
+        //         'Sportsandwelfares' => $candidates->where('Position', 'SPORTS AND WELFARE')->where('Application_status', true)->get(),
+        //     ]);
+        // });
+        
+
+
+        $Candidates = Candidates::with('Voter')->get();
+
+        return view('Candidates.vote')->with(['Chairpersons' => $Candidates->where('Position','CHAIR PERSON')->where('Application_status',true),
+                                             'ViceChairs' => $Candidates->where('Position','VICE CHAIR PERSON')->where('Application_status',true),
+                                             'Secretarygens' => $Candidates->where('Position','SECRETARY GENERAL')->where('Application_status',true),
+                                             'Academicsecretaries' => $Candidates->where('Position','ACADEMIC SECRETARY')->where('Application_status',true),
+                                             'Sportsandwelfares' => $Candidates->where('Position','SPORTS AND WELFARE')->where('Application_status',true),
+                                             ]);
     }
 
     /**
@@ -23,7 +43,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('Candidates.Apply');//,['positions' => Positions::lazy() ]);
+        return view('Candidates.Apply',['positions' => Positions::lazy() ]);
     }
 
     /**
@@ -32,23 +52,31 @@ class CandidateController extends Controller
     public function store(AddCandidateRequest $request)
     {
         $validate = $request->validated();
-        dd($validate);
-        $Candidate = new  Candidates;
-        $Candidate->User_id = '01h0d29prpqw6jmhsgdp34s98g';//Auth::user()->User_id;
-        $Candidate->Position = $validate['Position'];
-        $Candidate->Slogan = $validate['Slogan'];
-        $Candidate->path_to_image = $validate['Image']->store('CandidateImgs');
-        $Candidate->path_to_application_letter = $validate['Application_letter']->store('Application_letters');
-        $Candidate->Votes = 0;
+        //dd($validate);
+        DB::transaction(function() use($validate,$request)
+        {
+        
+            $Candidate = new  Candidates;
+            $Candidate->User_id = Auth::user()->id;
+            $Candidate->Position = $validate['Position'];
+            $Candidate->Slogan = $validate['Slogan'];
+            $Candidate->path_to_image = $request->file('Image')->store('public/CandidateImgs');
+            $Candidate->path_to_application_letter = $request->file('Application_letter')->store('public/Application_letters');
+            $Candidate->Votes = 0;
+            $Candidate->save();
+        });
+
+        return redirect()->back();
         
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Candidates $candidates)
+    public function show($id)
     {
-        return view('Candidate.show',['Candidate' => $candidates]);
+        $candidate = Candidates::with('Voter')->findOrFail($id);
+        return view('Candidates.show',['Candidate' => $candidate]);
     }
 
     /**
@@ -67,7 +95,6 @@ class CandidateController extends Controller
        
         $validate = $request->validated();
         dd($validate);
-        
         $candidates->Position = $validate['Position'];
         $candidates->Slogan = $validate['Slogan'];
         $candidates->path_to_image = $validate['Image']->store('CandidateImgs');
@@ -81,6 +108,8 @@ class CandidateController extends Controller
      */
     public function destroy(Candidates $candidates)
     {
-        //
+        $candidates->delete();
+
+        return redirect()->back();
     }
 }

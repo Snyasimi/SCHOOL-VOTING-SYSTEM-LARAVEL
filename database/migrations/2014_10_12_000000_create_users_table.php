@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('Email')->unique();
             $table->string('RegNumber');
             $table->boolean('Has_voted')->default(false);
+            $table->boolean('is_admin')->default(false);
+            
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

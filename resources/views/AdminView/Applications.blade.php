@@ -1,4 +1,4 @@
-@extends('Template')
+@extends('AdminView.Template')
 @section('content')
 
 
@@ -25,7 +25,7 @@
 
     <div class="columns block  container is-multiline">
 
-        @for($i=0;$i<20;$i++)
+        @forelse($Applicants as $applicant )
 
         <div class="column is-4">
 
@@ -49,14 +49,14 @@
 
                     <div class="card-content">
 
-                        <p class="has-text-weight-bold is-size-5">ONESMUS MANOTI</p>
-                        <p class="has-text-weight-semibold is-size-6 mb-1">CHAIR PERSON</p>
-                        <p class="has-text-centered ">"TO VOTE IS TO BLA BLA BLA BLA BLA"</p>
+                        <p class="has-text-weight-bold is-size-5">{{ $applicant->Voter->Name}}</p>
+                        <p class="has-text-weight-semibold is-size-6 mb-1">{{ $applicant->Position }}</p>
+                        <p class="has-text-centered ">"{{ $applicant->Slogan}}"</p>
                     </div>
 
                     <footer class="card-footer">
-                        <a href="#" class="card-footer-item button is-outlined is-success is-size-6 mr-2">ACCEPT</a>
-                        <a href="#" class="card-footer-item  button is-outlined is-info is-size-6 mr-2">VIEW </a>
+                        <a href="{{ route('Acceptapplication',$applicant->id)}}" class="card-footer-item button is-outlined is-success is-size-6 mr-2">ACCEPT</a>
+                        <a href="{{asset(Storage::url($applicant->path_to_application_letter))}}" target="_blank" class="card-footer-item  button is-outlined is-info is-size-6 mr-2">VIEW </a>
                         <a href="#" class="card-footer-item  button is-outlined is-danger is-size-6">DECLINE</a>
                         
                     </footer>
@@ -68,7 +68,9 @@
 
         </div>
 
-        @endfor
+        @empty
+        <p>NO APPLICATIONS</p>
+        @endforelse
 
     </div>
 

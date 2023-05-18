@@ -9,18 +9,18 @@
         <div class="column is-one-quarter mr-1">
 
             <header> 
-                <h2 class="subtitle has-text-left is-3 py-4 mt-3 has-text-link">USER INFO</h2>
+                <h2 class="subtitle has-text-left is-3 py-4 mt-3 has-text-info">USER INFO</h2>
             </header>
             <hr>
 
             <table class="table box is-bordered is-fullwidth">
-                <th  class="has-text-centered has-text-info" colspan="2">
+                <th  class="has-text-centered has-text-white has-background-info" colspan="2">
                     USER
                 </th>
                 <tbody>
                     <tr>
                         <td>NAME:</td>
-                        <td>NAME HERE</td>
+                        <td>USER</td>
                     </tr>
                     <tr>
                         <td>RED NUMBER</td>
@@ -36,22 +36,16 @@
         </div>
         @endauth
         
-        <div class='column ml-1'>
+        <div class='column my-5'>
 
-            <header>
-                <h2 class="has-text-left is-family-monospace subtitle is-3 py-4 mt-3 has-text-info">ALL CANDIDATES</h2>
-                
-            </header>
-
-            <hr>
         
             <div class="columns  is-multiline">
 
-               @for($i=0;$i<100;$i++)
+                @forelse($Candidates as $candidate)
 
-               <div class="column block is-one-quarter">
+               <div class="column my-2 block is-one-quarter">
                 <div class="box ">
-                    <p>STEVE SOLOMON NYASIMI</p>
+                    <p>{{$candidate->Voter->Name}}</p>
                     <div class="table-container mt-3">
                         <table class="table is-narrow">
                             <tbody>
@@ -60,7 +54,7 @@
                                         POSITION 
                                     </td>
                                     <td class="is-size-7">
-                                        CHAIRPERSON INFORMATON TECHNOLOGY 
+                                        {{$candidate->Position}} 
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,7 +62,7 @@
                                         REG NUMBER 
                                     </td>
                                     <td class="is-size-7">
-                                        DIT/2021/78965
+                                        {{ $candidate->Voter->RegNumber}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -76,14 +70,14 @@
                                         VOTES
                                     </td>
                                     <td class="is-size-7">
-                                        177
+                                        {{ $candidate->Votes}}
                                     </td>
                                 </tr>
 
                                 @auth
                                 <tr>
                                     <td class="is-size-7">
-                                        <a href="{{ route('Candidate.show',[1])}}" class="button is-small is-info">VIEW DETAILS</a>
+                                        <a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-small is-info">VIEW DETAILS</a>
                                     </td>
                                 </tr>
                                 @endauth
@@ -94,8 +88,9 @@
                    
                 </div>
                </div>
-
-               @endfor
+               @empty
+               <p class="title"> NO CANDIDATES</p>
+               @endforelse
                </div> 
     
             </div>

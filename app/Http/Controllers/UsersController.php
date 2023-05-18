@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddUserRequest;
+use App\Models\Candidates;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +13,17 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(Auth::check())
+        {
+
+            return view('Users.index')->with(['Candidates' => Candidates::where('Application_status',true)->lazy()]);
+
+        }
+
+        return view('Home')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->lazy() ]);
+        
     }
 
     /**

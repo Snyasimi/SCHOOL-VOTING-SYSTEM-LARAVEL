@@ -1,8 +1,8 @@
-@extends('Template')
+@extends('AdminView.Template')
 @section('content')
 
 
-<section class="section">
+<section class="section mb-6">
     
    <div class="columns ">
     
@@ -14,7 +14,7 @@
 
             <ul class="menu-list">
                 <li><a>CANDIDATES</a></li>
-                <li><a>POSITIONS</a></li>
+                <li><a href="{{ route('Addposition') }}">POSITIONS</a></li>
                 <li><a>APPLICATIONS</a></li>
                 <li><a>ADMINS</a></li>
             </ul>
@@ -31,11 +31,12 @@
 
                 <div class="level-item">
 
-                    <form method="POST"> 
+                    <form method="POST" action="{{ route('Position.store') }}" class="form"> 
                         @csrf
                         <div class="field is-horizontal">
                             
                             <div class="field-body">
+                               
 
                                 <p class="control">
                             
@@ -52,6 +53,7 @@
                         </div>
         
                        </form>
+                      
 
                 </div>
 
@@ -71,14 +73,14 @@
                 
                 <tbody>
 
-                    @for($i=0;$i<3;$i++)
+                    @foreach($positions as $position)
 
                         <tr>
-                            <td class="has-text-centered">Chair person</td>
+                            <td class="has-text-centered">{{$position->Position}}</td>
                             <td class="has-text-centered">55</td>
                         </tr>
 
-                    @endfor
+                    @endforeach
 
                 </tbody>
 

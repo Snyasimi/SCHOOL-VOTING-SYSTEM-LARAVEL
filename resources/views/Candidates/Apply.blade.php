@@ -1,4 +1,4 @@
-@extends('Template')
+@extends('Candidates.Template')
 @section('content')
 <section class="section">
 
@@ -24,7 +24,7 @@
 
             <div class="column">
 
-                <form  method="POST" action="{{ route('Candidate.store') }}" class="box">
+                <form  method="POST" action="{{ route('Candidate.store') }}" enctype="multipart/form-data" class="box">
                     @csrf
 
                     <div class="field is-horizontal">
@@ -46,9 +46,9 @@
                                     <div class="select is-link is-hovered mx-4">
                                         <select name="Position">
                                             <option value="">Select a position</option>
-                                            @for($i=0;$i<3;$i++)
-                                                <option>HAHA</option>
-                                            @endfor
+                                            @foreach($positions as $position)
+                                                <option value="{{$position->Position}}">{{$position->Position}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
     
@@ -94,7 +94,7 @@
 
                         <div class="field-body">
                             <div class="control">
-                                 <input class="input" type="file" name="Image" required >
+                                 <input class="input" type="file" name="Image"  >
                                 
                             </div>
                         </div>
@@ -114,7 +114,7 @@
 
                         <div class="field-body">
                             <div class="control">
-                                 <input class="input" type="file" name="Application_letter" required >
+                                 <input class="input" type="file" name="Application_letter"  >
                                 
                             </div>
                         </div>
