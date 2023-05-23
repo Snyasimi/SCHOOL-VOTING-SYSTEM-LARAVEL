@@ -5,7 +5,7 @@
 
         <div class="tile is-ancestor">
 
-            <div class="tile">
+            <div class="tile box">
 
                 <div class="tile is-parent is-vertical">
 
@@ -17,7 +17,11 @@
                 
                             <ul class="menu-list">
                                 <li><a href="{{ route('Home') }}" >HOME</a></li>
-                                @if(!auth()->user()->Has_voted)<li><a href="{{ route('Candidate.index')}}" >VOTE</a></li>@endif
+
+                                @if(!auth()->user()->Has_voted)
+                                    <li><a href="{{ route('Candidate.index')}}" >VOTE</a></li>
+                                @endif
+
                                 <li><a href="{{ route('Candidate.create')}}">APPLY</a></li>
                                 
                             </ul>
@@ -67,13 +71,13 @@
 
             </div>
 
-            <div class="tile ml-2 is-9 ">
+            <div class="tile box ml-2 is-9 ">
 
                 <div class="columns is-multiline">
 
                     @forelse($Candidates as $candidate)
      
-                    <div class="column block is-one-quarter">
+                    <div class="column block is-5">
                      <div class="box ">
                          <p>{{$candidate->Voter->Name}}</p>
                          <div class="table-container mt-3">

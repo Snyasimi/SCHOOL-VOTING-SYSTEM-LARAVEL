@@ -21,7 +21,7 @@ class PositionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('AdminView.positions')->with(['positions' => Positions::lazy()]);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidates;
 use App\Models\Positions;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,50 +13,57 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('AdminView.index');
+        return view('AdminView.index')->with([
+            'Total_candidates' => Candidates::where('Application_status',true)->count(),
+            'Total_voters' => User::where('is_admin',false)->count(),
+            'Total_positions' => Positions::count(),
+
+            'Chairperson' => Candidates::with(['Voter'])->where('Application_status',true)
+                                                ->orderBy('Votes')->where('Position','CHAIR PERSON')->lazy(),
+
+            'Vicechair' => Candidates::with(['Voter'])->where('Application_status',true)
+                                                ->where('Position','VICE CHAIR PERSON')->orderBy('Votes')->lazy(),
+
+            'Secretary_general' => Candidates::with(['Voter'])->where('Application_status',true)
+                                                ->where('Position','SECRETARY GENERAL')->orderBy('Votes')->lazy()
+        ]);
     }
 
-    public function AddPosition()
-    {
-        $positions = Positions::lazy();
-        return view('AdminView.positions')->with(['positions' => $positions]);
-    }
 
     public function Applications()
     {
         return view('AdminView.Applications')->with(['Applicants' => Candidates::with('Voter')->where('Application_status',false)->lazy()]);
     }
     
-    public function acceptapplication($id)
-    {
-
-        Candidates::findorfail($id)->update(['Application_status' => true ]);
-
-      return redirect()->back();
-
-    }
     public function candidates()
     {
         return view('AdminView.candidates')->with(['Candidates' => Candidates::lazy()]);
     }
 
-    public function ChangeStatus($id)
+
+    public function accept($id)
     {
-
-        $can = Candidates::findorfail($id);
-
-        if ($can->Application_status == true)
+        try
         {
-            $can->Application_status = false;
-            $can->save();
+            Candidates::findorfail($id)->update(['Application_status' => true ]);
+            return redirect()->back();
+        }
+        catch(\Exception)
+        {
+            return redirect()->back()->with(['message' => 'Something went wrong']);
+        }
+    }
+    public function decline($id)
+    {
+        try
+        {
+            Candidates::findorfail($id)->update(['Application_status' => false ]);
             return redirect()->back()->with(['message' => 'Candidate Disqualified']);
         }
 
-        $can->Application_status = true;
-        $can->save();
-        return redirect()->back()->with(['message' => 'Candidate Re-enstated']);
-        
-        
-
+        catch(\Exception)
+        {
+            return redirect()->back()->with(['message' => 'Something went wrong']);
+        }
     }
 }

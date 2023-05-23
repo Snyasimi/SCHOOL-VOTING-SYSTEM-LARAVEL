@@ -31,7 +31,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('Auth.Signup');
+        return view('Users.create');
     }
 
     /**

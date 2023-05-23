@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('path_to_image');
             $table->string('path_to_application_letter');
             $table->boolean('Application_status')->default(false);
+            //$table->softDeletes();
             $table->timestamps();
         });
 

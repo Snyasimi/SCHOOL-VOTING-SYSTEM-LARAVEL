@@ -1,40 +1,20 @@
 @extends('AdminView.Template')
+
 @section('content')
 
 <section class="section">
 
-    <div class="tile is-ancestor">
+    <div class="tile">
 
-        <div class="tile">
-
-            <div class="tile is-parent ">
-
-                <div class="tile is-child   column is-3">
-
-                    <div class="container"><!--- First column -->
-                
-                        <aside class="menu">
-                
-                            <p class="menu-label is-active is-size-4 has-text-info ">NAVIGATION</p>
-                
-                            <ul class="menu-list">
-                                <li><a>CANDIDATES</a></li>
-                                <li><a>POSITIONS</a></li>
-                                <li><a>APPLICATIONS</a></li>
-                                <li><a>ADMINS</a></li>
-                            </ul>
-                
-                        </aside>
-                
-                    </div>
-                </div>
-
-
+        <div class="tile is-parent ">
+    
+            <div class="tile is-child">
+    
                 <div class="tile is-child">
 
                     <div class="table-container">
     
-                        <div class="table">
+                        <div class="table is-fullwidth">
     
                             <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                                     <!--- CONDITION HERE -->
@@ -45,19 +25,19 @@
                                 </tr>
                                 @endif
     
-                                <th class="has-text-centered has-background-info has-text-white  " >
+                                <th class="has-text-centered has-background-info has-text-white is-size-4 " >
                                     CANDIDATE
                                 </th>
-                                <th class="has-text-centered has-background-info has-text-white  ">
+                                <th class="has-text-centered has-background-info has-text-white is-size-4">
                                     POSITION
                                 </th>
-                                <th class="has-text-centered has-background-info has-text-white  ">
+                                <th class="has-text-centered has-background-info has-text-white is-size-4 ">
                                     DISQUALIFY
                                 </th>
-                                <th class="has-text-centered has-background-info has-text-white  ">
+                                <th class="has-text-centered has-background-info has-text-white is-size-4 ">
                                     VIEW
                                 </th>
-                                <th class="has-text-centered has-background-info has-text-white  ">
+                                <th class="has-text-centered has-background-info has-text-white is-size-4 ">
                                     RE ACCEPT
                                 </th>
     
@@ -68,19 +48,19 @@
                                     @if($candidate->Application_status == true)
     
                                         <tr>
-                                            <td class="has-text-centered">{{ $candidate->Voter->Name}}</td>
-                                            <td class="has-text-centered">{{ $candidate->Position}}</td>
-                                            <td class="has-text-centered"><a href="{{ route('ChangeStatus',$candidate->id)}}" class="button is-danger  is-outlined">DISQUALIFY</a></td>
-                                            <td class="has-text-centered"><a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-info is-outlined">VIEW</a></td>
-                                            <td class="has-text-centered"><a href="{{ route('ChangeStatus',$candidate->id)}}" class="button is-success is-outlined " disabled>RE ACCEPT</a></td>
+                                            <td class="has-text-centered is-size-5">{{ $candidate->Voter->Name}}</td>
+                                            <td class="has-text-centered is-size-5">{{ $candidate->Position}}</td>
+                                            <td class="has-text-centered is-size-5"><a href="{{ route('decline_candidate',$candidate->id)}}" class="button is-danger  is-outlined">DISQUALIFY</a></td>
+                                            <td class="has-text-centered is-size-5"><a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-info is-outlined">VIEW</a></td>
+                                            <td class="has-text-centered is-size-6"><a href="{{ route('accept_candidate',$candidate->id)}}" class="button is-success is-outlined " disabled>RE ACCEPT</a></td>
                                         </tr>
                                     @else
                                     <tr>
-                                        <td class="has-text-centered">{{ $candidate->Voter->Name}}</td>
-                                        <td class="has-text-centered">{{ $candidate->Position}}</td>
-                                        <td class="has-text-centered"><a href="{{ route('ChangeStatus',$candidate->id)}}" class="button is-danger is-outlined " disabled>DISQUALIFY</a></td>
-                                        <td class="has-text-centered"><a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-info is-outlined">VIEW</a></td>
-                                        <td class="has-text-centered"><a href="{{ route('ChangeStatus',$candidate->id)}}" class="button is-success is-outlined">RE ACCEPT</a></td>
+                                        <td class="has-text-centered is-size-5">{{ $candidate->Voter->Name}}</td>
+                                        <td class="has-text-centered is-size-5">{{ $candidate->Position}}</td>
+                                        <td class="has-text-centered is-size-6"><a href="{{ route('decline_candidate',$candidate->id)}}" class="button is-danger is-outlined " disabled>DISQUALIFY</a></td>
+                                        <td class="has-text-centered is-size-5"><a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-info is-outlined">VIEW</a></td>
+                                        <td class="has-text-centered is-size-5"><a href="{{ route('accept_candidate',$candidate->id)}}" class="button is-success is-outlined">RE ACCEPT</a></td>
                                     </tr>
                                         
                                     @endif
@@ -90,6 +70,7 @@
                                         <td class="has-text-centered has-text-danger" colspan="5">
                                             THERE ARE NO CANDIDATES
                                         </td>
+                                    </tr>
                                     @endforelse
     
                                 </tbody>
@@ -103,17 +84,11 @@
                     </div>
     
                 </div>
-
+    
             </div>
-
+    
         </div>
-
-        <div class="">
-
-            
-
-        </div>
-
+    
     </div>
 
 </section>
