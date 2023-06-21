@@ -48,19 +48,19 @@
                                     @if($candidate->Application_status == true)
     
                                         <tr>
-                                            <td class="has-text-centered is-size-5">{{ $candidate->Voter->Name}}</td>
+                                            <td class="has-text-centered is-size-5">{{ $candidate->Person->Name }}</td>
                                             <td class="has-text-centered is-size-5">{{ $candidate->Position}}</td>
-                                            <td class="has-text-centered is-size-5"><a href="{{ route('decline_candidate',$candidate->id)}}" class="button is-danger  is-outlined">DISQUALIFY</a></td>
-                                            <td class="has-text-centered is-size-5"><a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-info is-outlined">VIEW</a></td>
-                                            <td class="has-text-centered is-size-6"><a href="{{ route('accept_candidate',$candidate->id)}}" class="button is-success is-outlined " disabled>RE ACCEPT</a></td>
+                                            <td class="has-text-centered is-size-5"><a href="{{ route('decline_candidate',$candidate->User_id)}}" class="button is-danger  is-outlined">DISQUALIFY</a></td>
+                                            <td class="has-text-centered is-size-5"><a href="{{ route('Candidate.show',$candidate->User_id)}}" class="button is-info is-outlined">VIEW</a></td>
+                                            <td class="has-text-centered is-size-6"><a href="{{ route('accept_candidate',$candidate->User_id)}}" class="button is-success is-outlined " disabled>RE ACCEPT</a></td>
                                         </tr>
                                     @else
                                     <tr>
-                                        <td class="has-text-centered is-size-5">{{ $candidate->Voter->Name}}</td>
+                                        <td class="has-text-centered is-size-5">{{ $candidate->Voter->Name  }}</td>
                                         <td class="has-text-centered is-size-5">{{ $candidate->Position}}</td>
-                                        <td class="has-text-centered is-size-6"><a href="{{ route('decline_candidate',$candidate->id)}}" class="button is-danger is-outlined " disabled>DISQUALIFY</a></td>
-                                        <td class="has-text-centered is-size-5"><a href="{{ route('Candidate.show',$candidate->id)}}" class="button is-info is-outlined">VIEW</a></td>
-                                        <td class="has-text-centered is-size-5"><a href="{{ route('accept_candidate',$candidate->id)}}" class="button is-success is-outlined">RE ACCEPT</a></td>
+                                        <td class="has-text-centered is-size-6"><a href="{{ route('decline_candidate',$candidate->User_id)}}" class="button is-danger is-outlined " disabled>DISQUALIFY</a></td>
+                                        <td class="has-text-centered is-size-5"><a href="{{ route('Candidate.show',$candidate->User_id)}}" class="button is-info is-outlined">VIEW</a></td>
+                                        <td class="has-text-centered is-size-5"><a href="{{ route('accept_candidate',$candidate->User_id)}}" class="button is-success is-outlined">RE ACCEPT</a></td>
                                     </tr>
                                         
                                     @endif

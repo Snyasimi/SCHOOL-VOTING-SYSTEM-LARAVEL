@@ -26,7 +26,7 @@ class AddCandidateRequest extends FormRequest
             'Position' => ['required'],
             'Slogan' => ['required','between:1,50'], 
             'Image' => ['required','max:3000'],
-            'Application_letter' => ['required','max:3000']
+            'Application_letter' => ['required','mimes:pdf','max:3000']
         ];
     }
 

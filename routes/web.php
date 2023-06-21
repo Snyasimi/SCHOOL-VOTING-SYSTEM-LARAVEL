@@ -26,25 +26,32 @@ Route::get('Signup',[AuthController::class,'Signup'])->name('Signup');
 Route::post('Signup',[AuthController::class,'register'])->name('SignUp');
 
 
-
+Route::resource('Users',Userscontroller::class);
 Route::middleware(['auth'])->group(function(){
 
     Route::put('vote',[VotingController::class,'vote'])->name('vote');
     Route::resource('Position',PositionsController::class);
     Route::resource('Candidate',CandidateController::class);
-    Route::resource('Users',Userscontroller::class)->except('store');
+    
     Route::get('logout/',[AuthController::class,'logout'])->name('logout');
 
 });
 
 //ADMIN ROUTES
-
 Route::post('Users/',[UsersController::class,'store'])->name('add_user');
-Route::get('Admin/positions',[AdminController::class,'AddPosition'])->name('add_positions');
+
+Route::middleware(['auth'])->group(function(){
+
+
+//Route::get('Admin/positions',[AdminController::class,'AddPosition'])->name('add_positions');
+Route::resource('Position', PositionsController::class)->only('position.create');
 Route::get('Admin/applications',[AdminController::class,'Applications'])->name('view_applications');
 Route::get('Admin/',[AdminController::class,'index'])->name('admin_home');
 Route::get('Accept/{id}',[AdminController::class,'accept'])->name('accept_candidate');
 Route::get('Decline/{id}',[AdminController::class,'decline'])->name('decline_candidate');
 Route::get('Admin/candidates',[AdminController::class,'candidates'])->name('view_candidates');
 Route::get('Change/{id}',[AdminController::class,'ChangeStatus'])->name('ChangeStatus');
+
+});
+
 

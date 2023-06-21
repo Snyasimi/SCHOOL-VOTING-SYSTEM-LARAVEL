@@ -4,7 +4,7 @@
         
         <div class="container">
 
-            <form action="">
+            <form action={{route('add_user')}} method="POST">
                 @csrf
     
                 <div class="field is-horizontal">
@@ -50,7 +50,7 @@
     
                         <div class="control">
     
-                            <input type="text"  class="input" name="role_number" required placeholder="ICT-001-002">
+                            <input type="text"  class="input" name="RegNo" required placeholder="ICT-001-002">
     
                         </div>
     
@@ -143,6 +143,22 @@
     
     
             </form>
+
+            @if($errors->any())
+
+            <div class="column mx-5 my-6">
+
+                <div class="notification is-danger is-light">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="has-text-danger is-light">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+            </div>
+
+        @endif
 
         </div>
 

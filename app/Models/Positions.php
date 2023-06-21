@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Positions extends Model
 {
     use HasFactory;
+
+
+    public function candidate()
+    {
+
+        return $this->hasMany(Candidates::class,'Position');
+
+    }
 }

@@ -53,18 +53,31 @@ class CandidateController extends Controller
     {
         $validate = $request->validated();
         //dd($validate);
-        DB::transaction(function() use($validate,$request)
-        {
+        //DB::transaction(function() use($validate,$request)
+        //{
         
-            $Candidate = new  Candidates;
-            $Candidate->User_id = Auth::user()->id;
+            $user = Auth::user();
+            
+            $Candidate = new  Candidates();
+            $Candidate->User_id = $user->id;
             $Candidate->Position = $validate['Position'];
             $Candidate->Slogan = $validate['Slogan'];
             $Candidate->path_to_image = $request->file('Image')->store('public/CandidateImgs');
             $Candidate->path_to_application_letter = $request->file('Application_letter')->store('public/Application_letters');
             $Candidate->Votes = 0;
+            
             $Candidate->save();
-        });
+
+            // Candidates::create(
+            //     ['User_id' => $user->id],
+            //     ['Position' => $validate['Position']],
+            //     ['Slogan' => $validate['Slogan']],
+            //     ['path_to_image' => $request->file('Image')->store('public/CandidateImgs')],
+            //     ['path_to_application_letter' => $request->file('Application_letter')->store('public/Application_letters')],
+            //     ['Votes' => 0],
+
+            // );
+       // });
 
         return redirect()->back();
         
@@ -75,8 +88,8 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $candidate = Candidates::with('Voter')->findOrFail($id);
-        return view('Candidates.show',['Candidate' => $candidate]);
+        $Candidate = Candidates::with('Voter')->findOrFail($id);
+        return view('Candidates.show',['Candidate' => $Candidate]);
     }
 
     /**
@@ -111,5 +124,6 @@ class CandidateController extends Controller
         $candidates->delete();
 
         return redirect()->back();
+ 
     }
 }

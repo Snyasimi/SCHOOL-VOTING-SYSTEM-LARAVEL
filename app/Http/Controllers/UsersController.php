@@ -18,11 +18,11 @@ class UsersController extends Controller
         if(Auth::check())
         {
 
-            return view('Users.index')->with(['Candidates' => Candidates::where('Application_status',true)->lazy()]);
+            return view('Users.index')->with(['Candidates' => Candidates::where('Application_status',true)->orderBy('Votes')->lazy()]);
 
         }
 
-        return view('Home')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->lazy() ]);
+        return view('Home')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->orderBy('Votes')->lazy() ]);
         
     }
 

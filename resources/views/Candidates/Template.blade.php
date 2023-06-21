@@ -14,27 +14,51 @@
 
 <nav class="navbar is-link is-fixed-top">
     <div class="navbar-brand ">
-        <a href="#" class="navbar-item">
-                <img src="{{asset('storage/images.png')}}" alt="Mount Kenya University Logo"  width="130" >
-        </a>
+        
+    
+            <a href="{{ route('Home')}}" class="navbar-item">
+                <img src="{{asset('storage/download.png')}}" alt="Mount Kenya University Logo"  width="130" >
+            </a>
+
+        
+
+        <a role="button" class="navbar-burger">
+        <span ></span>
+        <span ></span>
+        <span ></span>
+      </a>
+
     </div>
    
     <div class="container">
 
-        <div class="navbar-menu">
+        <div class="navbar-menu is-active ">
+
+
             <div class="navbar-start">
+
                 <a href="{{ route('Home') }}" class="navbar-item ">Home</a>
 
                 @auth
-                <a href="{{ route('Candidate.index')}}" class="navbar-item">Vote</a>
-                <a href="{{ route('Candidate.create')}}" class="navbar-item">Apply</a>
+
+                    @unless(auth()->user()->Has_voted)
+                        <a href="{{ route('Candidate.index')}}" class="navbar-item">Vote</a>
+                    @endunless
+                    <a href="{{ route('Candidate.create')}}" class="navbar-item">Apply</a>
                 @endauth
                
+
             </div>
+
+           
+
+            
             <div class="navbar-end">
                 
                 <div class="buttons">
-
+    
+                    
+                    
                     @auth
                     <a href="{{route('logout')}}" class="button is-info">
                         <strong>Logout</strong>
@@ -53,4 +77,15 @@
 <body class="block">
     @yield('content')
 </body>
+
+<footer class="footer has-background-info">
+    <div class="content has-text-centered ">
+      <p class="has-text-white">
+       <strong class="has-text-white">MOUNT KENYA UNIVERSITY E-VOTING</strong>
+       <p ><a class="has-text-white" href="#">visit our website</a></p>
+       <p ><a class="has-text-white" href="#">Contact Us</a></p>
+      </p>
+    </div>
+  </footer>
+
 </html>
