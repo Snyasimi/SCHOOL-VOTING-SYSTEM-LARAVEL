@@ -3,51 +3,9 @@
 
 <section class="section">
 
-    <div class="tile">
+    <div class="tile is-vertical">
 
-        <div class="tile is-parent">
-
-            <div class="tile is-child">
-
-                <div class="div table-container box">
-            
-                    <table class="table is-fullwidth  is-striped is-hoverable is-bordered">
-        
-                        <tr>
-                            <th class="has-text-centered is-size-4 has-background-info has-text-white">POSITIONS</th>
-                            <th class="has-text-centered is-size-4 has-background-info has-text-white">NUMBER OF CANDIDATES</th>
-                        </tr>
-        
-                        
-                        <tbody>
-        
-                            @forelse($positions as $position)
-        
-                                <tr>
-                                    <td class="has-text-centered">{{$position->Position}}</td>
-                                    <td class="has-text-centered">55</td>
-                                </tr>
-        
-        
-                            @empty
-        
-                                <tr>
-                                    <td colspan="2">NO POSITIONS.ADD POSITIONS TO CONTINUE</td>
-                                </tr>
-                                
-                            @endforelse
-        
-                        </tbody>
-        
-                    </table>
-        
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="tile is-parent is-4">
+        <div class="tile is-parent ">
 
             <div class="is-child">
 
@@ -98,7 +56,54 @@
 
         </div>
 
+    
     </div>
+
+        <div class="tile is-parent ">
+
+            <div class="tile is-child">
+
+                <div class="div table-container box">
+            
+                    <table class="table is-fullwidth  is-striped is-hoverable is-bordered">
+        
+                        <tr>
+                            <th class="has-text-centered is-size-4 has-background-info has-text-white">POSITIONS</th>
+                            <th class="has-text-centered is-size-4 has-background-info has-text-white">NUMBER OF CANDIDATES</th>
+                        </tr>
+        
+                        
+                        <tbody>
+        
+                            @forelse($positions as $position)
+        
+                                <tr>
+                                    <td class="has-text-centered">{{$position->Position}}</td>
+                                    <td class="has-text-centered">{{ $position->candidate->count()}}</td>
+                                </tr>
+        
+        
+                            @empty
+        
+                                <tr>
+                                    <td colspan="2">NO POSITIONS.ADD POSITIONS TO CONTINUE</td>
+                                </tr>
+                                
+                            @endforelse
+        
+                        </tbody>
+        
+                    </table>
+        
+                </div>
+
+            </div>
+
+        </div>
+
+        
+    </div>
+
 
 </section>
 

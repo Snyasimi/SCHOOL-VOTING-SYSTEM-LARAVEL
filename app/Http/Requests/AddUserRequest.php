@@ -9,10 +9,10 @@ class AddUserRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    // public function authorize(): bool
-    // {
-    //     return true;
-    // }
+    public function authorize(): bool
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -40,7 +40,7 @@ class AddUserRequest extends FormRequest
          'Email.required' => 'Please enter your email address',
          'RegNo.required' => 'Please enter your Registration number',
          'password.required' => 'Please enter your password',
-         'password.same' => 'The given passwords dont match Please confirm your password '
+         'password.same' => 'The given passwords dont match, Please confirm your password '
          
 
        

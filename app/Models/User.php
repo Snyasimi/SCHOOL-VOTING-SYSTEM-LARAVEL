@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,9 +20,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
+    protected $primaryKey = "id";
+     protected $fillable = [
+        'Name',
+        'Email',
         'password',
         'RegNumber',
     ];
@@ -47,7 +49,7 @@ class User extends Authenticatable
     ];
 
 
-    public function candidate()
+    public function Candidate()
     {
 
         return $this->hasOne(Candidates::class,'User_id');

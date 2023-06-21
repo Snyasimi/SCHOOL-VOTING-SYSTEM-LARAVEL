@@ -19,8 +19,21 @@
                 </div>
 
             </div>
+            @elseif(session('message'))
+            
+            <div class="column mx-5 my-6">
 
-        @endif
+                <div class="notification is-danger is-light">
+                    <ul>
+                        
+                         <li class="has-text-danger is-light">{{ session('message') }}</li>
+                       
+                    </ul>
+                </div>
+
+            </div>
+
+            @endif
 
             <div class="column">
 
@@ -73,7 +86,7 @@
 
                                 <div class="control mx-4">
 
-                                    <textarea class="textarea is-info is-normal" placeholder="Vote for a better tommorow " name="Slogan" rows="3"></textarea>
+                                    <textarea class="textarea is-info is-normal" value={{ old('Slogan') }} placeholder="Vote for a better tommorow " name="Slogan" rows="3"></textarea>
 
                                 </div>
 
@@ -94,7 +107,7 @@
 
                         <div class="field-body">
                             <div class="control">
-                                 <input class="input" type="file" name="Image"  >
+                                 <input class="input" type="file" name="Image" value={{ old('Image')}}  >
                                 
                             </div>
                         </div>
@@ -114,7 +127,7 @@
 
                         <div class="field-body">
                             <div class="control">
-                                 <input class="input" type="file" name="Application_letter"  >
+                                 <input class="input" type="file" name="Application_letter" value={{ old('Application_letter') }} >
                                 
                             </div>
                         </div>
