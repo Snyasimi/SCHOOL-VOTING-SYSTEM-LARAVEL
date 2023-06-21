@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddCandidateRequest;
 use App\Models\Candidates;
 use App\Models\Positions;
-use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
@@ -25,17 +25,18 @@ class CandidateController extends Controller
         //         'Sportsandwelfares' => $candidates->where('Position', 'SPORTS AND WELFARE')->where('Application_status', true)->get(),
         //     ]);
         // });
-        
+
 
 
         $Candidates = Candidates::with('Voter')->get();
 
-        return view('Candidates.vote')->with(['Chairpersons' => $Candidates->where('Position','CHAIR PERSON')->where('Application_status',true),
-                                             'ViceChairs' => $Candidates->where('Position','VICE CHAIR PERSON')->where('Application_status',true),
-                                             'Secretarygens' => $Candidates->where('Position','SECRETARY GENERAL')->where('Application_status',true),
-                                             'Academicsecretaries' => $Candidates->where('Position','ACADEMIC SECRETARY')->where('Application_status',true),
-                                             'Sportsandwelfares' => $Candidates->where('Position','SPORTS AND WELFARE')->where('Application_status',true),
-                                             ]);
+        return view('Candidates.vote')->with([
+            'Chairpersons' => $Candidates->where('Position', 'CHAIR PERSON')->where('Application_status', true),
+            'ViceChairs' => $Candidates->where('Position', 'VICE CHAIR PERSON')->where('Application_status', true),
+            'Secretarygens' => $Candidates->where('Position', 'SECRETARY GENERAL')->where('Application_status', true),
+            'Academicsecretaries' => $Candidates->where('Position', 'ACADEMIC SECRETARY')->where('Application_status', true),
+            'Sportsandwelfares' => $Candidates->where('Position', 'SPORTS AND WELFARE')->where('Application_status', true),
+        ]);
     }
 
     /**
@@ -43,7 +44,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('Candidates.Apply',['positions' => Positions::lazy() ]);
+        return view('Candidates.Apply', ['positions' => Positions::lazy()]);
     }
 
     /**
@@ -55,9 +56,11 @@ class CandidateController extends Controller
         //dd($validate);
         //DB::transaction(function() use($validate,$request)
         //{
-        
+
+        try {
+            DB::beginTransaction();
             $user = Auth::user();
-            
+
             $Candidate = new  Candidates();
             $Candidate->User_id = $user->id;
             $Candidate->Position = $validate['Position'];
@@ -65,22 +68,28 @@ class CandidateController extends Controller
             $Candidate->path_to_image = $request->file('Image')->store('public/CandidateImgs');
             $Candidate->path_to_application_letter = $request->file('Application_letter')->store('public/Application_letters');
             $Candidate->Votes = 0;
-            
+
             $Candidate->save();
 
-            // Candidates::create(
-            //     ['User_id' => $user->id],
-            //     ['Position' => $validate['Position']],
-            //     ['Slogan' => $validate['Slogan']],
-            //     ['path_to_image' => $request->file('Image')->store('public/CandidateImgs')],
-            //     ['path_to_application_letter' => $request->file('Application_letter')->store('public/Application_letters')],
-            //     ['Votes' => 0],
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            // handle your error
+            dd($th->getMessage());
+        }
 
-            // );
-       // });
+        // Candidates::create(
+        //     ['User_id' => $user->id],
+        //     ['Position' => $validate['Position']],
+        //     ['Slogan' => $validate['Slogan']],
+        //     ['path_to_image' => $request->file('Image')->store('public/CandidateImgs')],
+        //     ['path_to_application_letter' => $request->file('Application_letter')->store('public/Application_letters')],
+        //     ['Votes' => 0],
+
+        // );
+        // });
 
         return redirect()->back();
-        
     }
 
     /**
@@ -89,7 +98,7 @@ class CandidateController extends Controller
     public function show($id)
     {
         $Candidate = Candidates::with('Voter')->findOrFail($id);
-        return view('Candidates.show',['Candidate' => $Candidate]);
+        return view('Candidates.show', ['Candidate' => $Candidate]);
     }
 
     /**
@@ -97,7 +106,7 @@ class CandidateController extends Controller
      */
     public function edit(Candidates $candidates)
     {
-        return view('Candidate.Apply',['candidate'=> $candidates]);
+        return view('Candidate.Apply', ['candidate' => $candidates]);
     }
 
     /**
@@ -105,15 +114,13 @@ class CandidateController extends Controller
      */
     public function update(Request $request, Candidates $candidates)
     {
-       
+
         $validate = $request->validated();
         dd($validate);
         $candidates->Position = $validate['Position'];
         $candidates->Slogan = $validate['Slogan'];
         $candidates->path_to_image = $validate['Image']->store('CandidateImgs');
         $candidates->path_to_application_letter = $validate['Application_letter']->store('Application_letters');
-        
-
     }
 
     /**
@@ -124,6 +131,5 @@ class CandidateController extends Controller
         $candidates->delete();
 
         return redirect()->back();
- 
     }
 }
