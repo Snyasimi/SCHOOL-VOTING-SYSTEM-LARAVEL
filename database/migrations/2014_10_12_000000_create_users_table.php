@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('users', function (Blueprint $table) {
+
             $table->ulid('id')->primary();
             $table->string('Name');
             $table->string('Email')->unique();

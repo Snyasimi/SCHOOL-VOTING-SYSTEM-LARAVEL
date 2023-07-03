@@ -20,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $primaryKey = "id";
+    
      protected $fillable = [
         'Name',
         'Email',
@@ -52,7 +52,7 @@ class User extends Authenticatable
     public function Candidate()
     {
 
-        return $this->hasOne(Candidates::class,'User_id');
+        return $this->hasOne(Candidates::class,'User_id','User_id');
 
     } 
 }

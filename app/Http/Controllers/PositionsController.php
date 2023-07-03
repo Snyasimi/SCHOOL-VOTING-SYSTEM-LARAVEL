@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class PositionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('IsAdmin')->only('create');
+    }
     /**
      * Display a listing of the resource.
      */

@@ -38,19 +38,20 @@ Route::middleware(['auth'])->group(function(){
 });
 
 //ADMIN ROUTES
-Route::post('Users/',[UsersController::class,'store'])->name('add_user');
 
-Route::middleware(['auth'])->group(function(){
+
+Route::middleware(['auth','IsAdmin'])->group(function(){
 
 
 //Route::get('Admin/positions',[AdminController::class,'AddPosition'])->name('add_positions');
-Route::resource('Position', PositionsController::class)->only('position.create');
+Route::resource('Position', PositionsController::class)->only('create');
 Route::get('Admin/applications',[AdminController::class,'Applications'])->name('view_applications');
 Route::get('Admin/',[AdminController::class,'index'])->name('admin_home');
 Route::get('Accept/{id}',[AdminController::class,'accept'])->name('accept_candidate');
 Route::get('Decline/{id}',[AdminController::class,'decline'])->name('decline_candidate');
 Route::get('Admin/candidates',[AdminController::class,'candidates'])->name('view_candidates');
 Route::get('Change/{id}',[AdminController::class,'ChangeStatus'])->name('ChangeStatus');
+Route::post('Users/',[UsersController::class,'store'])->name('add_user');
 
 });
 

@@ -51,6 +51,11 @@ class UsersController extends Controller
         $user->password = bcrypt($validate['password']);
         $user->save();
 
+        if($request->user()->is_admin)
+        {
+            return back();
+        }
+        
         Auth::login($user);
         return redirect()->route('Home');
     }

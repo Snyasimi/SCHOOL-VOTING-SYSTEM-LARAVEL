@@ -42,9 +42,9 @@
                                 </div>
             
                                 <footer class="card-footer">
-                                    <a href="{{ route('accept_candidate',$applicant->id)}}" class="card-footer-item button is-outlined is-success is-size-6 mr-2">ACCEPT</a>
+                                    <a href="{{ route('accept_candidate',$applicant->User_id)}}" class="card-footer-item button is-outlined is-success is-size-6 mr-2">ACCEPT</a>
                                     <a href="{{asset(Storage::url($applicant->path_to_application_letter))}}" target="_blank" class="card-footer-item  button is-outlined is-info is-size-6 mr-2">VIEW APPLICATION LETTER </a>
-                                    <a href="{{ route('decline_candidate',$applicant->id)}}" class="card-footer-item  button is-outlined is-danger is-size-6">DECLINE</a>
+                                    <a href="{{ route('decline_candidate',$applicant->User_id)}}" class="card-footer-item  button is-outlined is-danger is-size-6">DECLINE</a>
                                     
                                 </footer>
             

@@ -22,7 +22,7 @@ class IsAdmin
 
         }
 
-        return back()->header('status',200);
+        return redirect()->route('Home');
 
         
     }

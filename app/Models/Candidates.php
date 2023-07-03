@@ -13,6 +13,7 @@ class Candidates extends Model
     //protected $with = 'Voter';
     
     protected $primaryKey = 'User_id'; 
+    public $incrementing = false;
     protected $hidden = ['created_at','updated_at'];
     protected $fillable = ['Application_status'];
 
@@ -20,7 +21,7 @@ class Candidates extends Model
     public function Voter()
     {
 
-        return $this->belongsTo(User::class,'User_id');
+        return $this->belongsTo(User::class,'User_id','id');
 
     }
 

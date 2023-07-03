@@ -14,11 +14,11 @@
                 <p class="has-text-left has-text-weight-semibold is-family-monospace is-uppercase py-5 has-text-danger">
                     Please select one of the following people to be your chairperson
                 </p>
-    
+                   
                 <div class="columns  container block is-multiline">
     
                    @forelse ($Chairpersons as $chairperson)
-    
+         
                         <div class="column block is-one-quarter">
                             <div class="box">
                             

@@ -37,7 +37,7 @@ class AdminController extends Controller
     
     public function candidates()
     {
-        return view('AdminView.candidates')->with(['Candidates' => Candidates::with('Voter')->orderBy('Votes')->lazy()]);
+        return view('AdminView.candidates')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->orderBy('Votes')->lazy()]);
     }
 
 

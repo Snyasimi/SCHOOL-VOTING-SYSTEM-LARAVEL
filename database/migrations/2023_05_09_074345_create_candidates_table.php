@@ -15,7 +15,8 @@ return new class extends Migration
 
         Schema::create('candidates', function (Blueprint $table) {
 
-            $table->foreignUlid('User_id')->references('users')->on('id')->onDelete('set null')->primary();
+            $table->foreignUlid('User_id')->references('id')->on('users')->onDelete('set null')->nullable();
+            $table->primary('User_id');
 
             $table->string('Position');
             $table->foreign('Position')->references('Position')->on('positions');
