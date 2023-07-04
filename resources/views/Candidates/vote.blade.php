@@ -61,7 +61,7 @@
     
                     @forelse ($ViceChairs as $vicechair)
     
-                        <div class="column block is-is-one-quarter">
+                        <div class="column block is-one-quarter">
                             <div class="box">
                             
                                 <figure class="image is-128x128">
@@ -135,10 +135,10 @@
             </fieldset>
     
             <fieldset>
-                <legend class="subtitle is-3 is-underlined has-text-centered has-text-info has-text-weight-bold">ACADEMIC SECRETARY</legend>
+                <legend class="subtitle is-3 is-underlined has-text-centered has-text-info has-text-weight-bold">TREASURER</legend>
                 
                 <p class="has-text-left has-text-weight-semibold is-family-monospace is-uppercase py-5 has-text-danger">
-                    Please select one of the following people to be your ACADEMIC SECRETARY
+                    Please select one of the following people to be your TREASURER
                 </p>
     
                  <div class="columns container block is-multiline">

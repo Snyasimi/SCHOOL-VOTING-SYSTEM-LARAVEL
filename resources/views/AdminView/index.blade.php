@@ -40,6 +40,40 @@
                         <p class="title is-spaced has-text-info is-size-3">POSITIONS</p>
                             <p class="subtitle is-family-code">{{$Total_positions}}</p>
                     </div>
+
+                    {{-- <div class="tile is-child">
+                        
+                    <div class="level">
+
+                        <div class="level-item has-text-centered">
+
+                            <p class="title is-3 has-text-info">CANDIDATES</p>
+                            <p class="subtitle is-family-code">{{$Total_candidates}}</p>
+
+                        </div>
+
+                        <div class="level-item has-text-centered">
+
+                            <p class="title is-3 has-text-info ">VOTERS</p>
+                            <p class="subtitle is-family-code">{{$Total_voters}}</p>
+
+                        </div>
+
+                        <div class="level-item has-text-centered">
+
+                            <div>
+
+                                <p class="title is-3 has-text-info">POSITIONS</p>
+                                <p class="subtitle is-family-code">{{$Total_positions}}</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    </div>  --}}
      
     
                 </div>

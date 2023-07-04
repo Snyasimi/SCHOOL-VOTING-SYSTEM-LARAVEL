@@ -94,7 +94,7 @@
                         <li><a href="{{ route('view_applications') }}">APPLICATIONS</a></li>
                         <li><a href="{{ route('view_candidates') }}">CANDIDATES</a></li>
                         <li><a href="{{ route('Position.create') }}">POSITIONS</a></li>
-                        <li><a href="#">HELP</a></li> 
+                        <li><a href="{{ route('Users.create') }}">ADD USER</a></li> 
                     </ul>
             
                 </aside>
