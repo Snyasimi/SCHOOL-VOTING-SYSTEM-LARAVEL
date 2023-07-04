@@ -46,7 +46,7 @@
         <div class="navbar-menu">
            <div class="container">
 
-            <p class="title is-size-1 has-text-centered has-text-success">
+            <p class="title is-size-1 has-text-centered has-text-white">
                 MOUNT KENYA UNIVERSITY
             </p>
 
@@ -90,10 +90,10 @@
                     <p class="menu-label is-active is-size-4 ">NAVIGATION</p>
             
                     <ul class="menu-list">
+                        <li><a href="{{ route('admin_home') }}">ADMINS</a></li>
+                        <li><a href="{{ route('view_applications') }}">APPLICATIONS</a></li>
                         <li><a href="{{ route('view_candidates') }}">CANDIDATES</a></li>
                         <li><a href="{{ route('Position.create') }}">POSITIONS</a></li>
-                        <li><a href="{{ route('view_applications') }}">APPLICATIONS</a></li>
-                        <li><a href="{{ route('admin_home') }}">ADMINS</a></li>
                         <li><a href="#">HELP</a></li> 
                     </ul>
             

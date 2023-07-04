@@ -95,9 +95,15 @@ class CandidateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $Candidate = Candidates::with('Voter')->findOrFail($id);
+
+        if($request->user()->is_admin)
+        {
+            return view('AdminView.view_candidate', ['Candidate' => $Candidate]);
+        }
+
         return view('Candidates.show', ['Candidate' => $Candidate]);
     }
 
