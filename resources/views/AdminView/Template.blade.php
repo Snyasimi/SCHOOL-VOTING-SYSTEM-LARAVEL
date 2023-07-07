@@ -46,7 +46,7 @@
         <div class="navbar-menu">
            <div class="container">
 
-            <p class="title is-size-1 has-text-centered has-text-white">
+            <p class="title is-size-1 has-text-centered has-text-warning">
                 MOUNT KENYA UNIVERSITY
             </p>
 
@@ -78,7 +78,7 @@
 
 <div class="tile is-ancestor full-height-tile">
     
-    <div class="tile is-3 box">
+    <div class="tile is-3 ">
 
         <div class="tile is-parent">
 

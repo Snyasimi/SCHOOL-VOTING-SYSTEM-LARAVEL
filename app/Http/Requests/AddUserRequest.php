@@ -26,7 +26,7 @@ class AddUserRequest extends FormRequest
             'Name' => ['required','regex:/\b\w+\s+\w+\b/'],
             'Email' => ['required'],
 	        'RegNo' =>['required'],
-            'password' => ['required','between:6,8','same:password2'],
+            'password' => ['required','between:6,20','same:password2'],
         
         ];
     }

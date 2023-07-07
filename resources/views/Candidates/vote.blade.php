@@ -9,9 +9,9 @@
             @method('PUT')
             <fieldset>
     
-                <legend class="subtitle is-3 is-underlined has-text-centered has-text-info has-text-weight-bold">CHAIR PERSON</legend>
+                <legend class="title  is-underlined has-text-centered has-text-link has-text-weight-bold">CHAIR PERSON</legend>
                 
-                <p class="has-text-left has-text-weight-semibold is-family-monospace is-uppercase py-5 has-text-danger">
+                <p class=" subtitle is-6 has-text-left has-text-weight-semibold is-family-monospace is-uppercase py-5 has-text-info">
                     Please select one of the following people to be your chairperson
                 </p>
                    

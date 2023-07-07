@@ -17,8 +17,8 @@
                         
                         <div class="block ">
     
-                            <p class="title is-spaced has-text-info is-size-3"> CANDIDATES</p>
-                            <p class="subtitle is-family-code">{{$Total_candidates}}</p>
+                            <p class="title is-spaced has-text-info is-size-3 has-text-centered"> CANDIDATES</p>
+                            <p class="subtitle is-family-code has-text-centered">{{$Total_candidates}}</p>
     
                         </div>
     
@@ -28,8 +28,8 @@
                         
                         <div class="block">
     
-                            <p class="title is-spaced has-text-info is-size-3 "> VOTERS</p>
-                            <p class="subtitle is-family-code ">{{$Total_voters}}</p>
+                            <p class="title is-spaced has-text-info is-size-3 has-text-centered "> VOTERS</p>
+                            <p class="subtitle is-family-code has-text-centered">{{$Total_voters}}</p>
     
                         </div>
     
@@ -37,8 +37,8 @@
     
                     <div class="tile is-child ">
     
-                        <p class="title is-spaced has-text-info is-size-3">POSITIONS</p>
-                            <p class="subtitle is-family-code">{{$Total_positions}}</p>
+                        <p class="title is-spaced has-text-info is-size-3 has-text-centered">POSITIONS</p>
+                            <p class="subtitle is-family-code has-text-centered">{{$Total_positions}}</p>
                     </div>
 
                     {{-- <div class="tile is-child">

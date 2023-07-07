@@ -11,12 +11,11 @@ class VotingController extends Controller
 {
     public function vote(VoteRequest $request)
     {
-
-        
-    DB::transaction(function() use($request)
-    {
-
         $validate = $request->validated();
+        
+    DB::transaction(function() use($request,$validate)
+    {
+        
         //dd($validate);
         $request->user()->Has_voted = true;
         $request->user()->save();

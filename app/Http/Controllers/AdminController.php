@@ -19,13 +19,13 @@ class AdminController extends Controller
             'Total_positions' => Positions::count(),
 
             'Chairperson' => Candidates::with(['Voter'])->where('Application_status',true)
-                                                ->orderBy('Votes')->where('Position','CHAIRPERSON')->lazy(),
+                                                ->orderBy('Votes','desc')->where('Position','CHAIRPERSON')->lazy(),
 
             'Vicechair' => Candidates::with(['Voter'])->where('Application_status',true)
-                                                ->where('Position','VICE CHAIRPERSON')->orderBy('Votes')->lazy(),
+                                                ->where('Position','VICE CHAIRPERSON')->orderBy('Votes','desc')->lazy(),
 
             'Secretary_general' => Candidates::with(['Voter'])->where('Application_status',true)
-                                                ->where('Position','SECRETARY GENERAL')->orderBy('Votes')->lazy()
+                                                ->where('Position','SECRETARY GENERAL')->orderBy('Votes','desc')->lazy()
         ]);
     }
 
@@ -37,7 +37,7 @@ class AdminController extends Controller
     
     public function candidates()
     {
-        return view('AdminView.candidates')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->orderBy('Votes')->lazy()]);
+        return view('AdminView.candidates')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->orderBy('Name')->lazy()]);
     }
 
 
