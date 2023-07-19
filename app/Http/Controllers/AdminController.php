@@ -32,12 +32,12 @@ class AdminController extends Controller
 
     public function Applications()
     {
-        return view('AdminView.Applications')->with(['Applicants' => Candidates::with('Voter')->where('Application_status',false)->orderBy('Votes')->lazy()]);
+        return view('AdminView.Applications')->with(['Applicants' => Candidates::with('Voter')->where('Application_status',false)->orderBy('Votes','desc')->lazy()]);
     }
     
     public function candidates()
     {
-        return view('AdminView.candidates')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->orderBy('Name')->lazy()]);
+        return view('AdminView.candidates')->with(['Candidates' => Candidates::with('Voter')->where('Application_status',true)->orderBy('Votes','desc')->lazy()]);
     }
 
 

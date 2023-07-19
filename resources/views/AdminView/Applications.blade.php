@@ -29,7 +29,7 @@
                                 <div class="card-image">
             
                                     <figure class="image is-4by3">
-                                        <img src="{{asset("storage/saitama.png")}}" alt="Placeholder image">
+                                        <img src="{{ asset(Storage::url($applicant->path_to_image)) }}" alt="Placeholder image">
                                       </figure>
             
                                 </div>

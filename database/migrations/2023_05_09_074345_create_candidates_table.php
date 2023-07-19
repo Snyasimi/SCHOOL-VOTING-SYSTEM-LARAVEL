@@ -15,11 +15,11 @@ return new class extends Migration
 
         Schema::create('candidates', function (Blueprint $table) {
 
-            $table->foreignUlid('User_id')->references('id')->on('users')->onDelete('set null')->nullable();
+            $table->foreignUlid('User_id')->references('id')->on('users')->onDelete('no action')->nullable();
             $table->primary('User_id');
 
             $table->string('Position');
-            $table->foreign('Position')->references('Position')->on('positions');
+            $table->foreign('Position')->references('Position')->on('positions')->onDelete('no action');
 
             $table->integer('Votes')->default(0);
             $table->longText('Slogan');
