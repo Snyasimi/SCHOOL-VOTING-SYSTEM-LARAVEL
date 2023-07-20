@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-	    Schema::disableForeignKeyConstraints()
+	    Schema::disableForeignKeyConstraints();
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->string('Position')->unique();
@@ -19,7 +19,7 @@ return new class extends Migration
         
 	});
 
-	    Schema::enableForeignKeyConstraints()
+	    Schema::enableForeignKeyConstraints();
     }
 
     /**
