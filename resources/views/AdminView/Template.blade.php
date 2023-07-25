@@ -18,6 +18,9 @@
     flex: 1;
     overflow-y: auto;
   }
+  .footer {
+    margin-top: 100vh;
+  }
 
     </style>
 
@@ -46,7 +49,7 @@
         <div class="navbar-menu">
            <div class="container">
 
-            <p class="title is-size-1 has-text-centered has-text-warning">
+            <p class="title is-size-1 has-text-centered has-text-white">
                 MOUNT KENYA UNIVERSITY
             </p>
 
@@ -95,6 +98,7 @@
                         <li><a href="{{ route('view_candidates') }}">CANDIDATES</a></li>
                         <li><a href="{{ route('Position.create') }}">POSITIONS</a></li>
                         <li><a href="{{ route('Users.create') }}">ADD USER</a></li> 
+                        <li><a href="{{ route('view_results') }}">VIEW RESULTS</a></li>
                     </ul>
             
                 </aside>
@@ -111,7 +115,10 @@
     
 
 
-<footer class="footer  ">
+
+</body>
+
+<footer class="footer ">
     <div class="content has-text-centered ">
       <p class="has-text-info">
        <strong class="has-text-info ">MOUNT KENYA UNIVERSITY E-VOTING</strong>
@@ -120,5 +127,4 @@
       </p>
     </div>
 </footer>
-</body>
 </html>

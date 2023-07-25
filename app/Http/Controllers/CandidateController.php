@@ -30,8 +30,10 @@ class CandidateController extends Controller
 
         $Candidates = Candidates::with('Voter')->get();
 
+        
+
         return view('Candidates.vote')->with([
-            'Chairpersons' => $Candidates->where('Position','like', 'CHAIRPERSON')->where('Application_status', true),
+            'Chairpersons' => $Candidates->where('Position','like', 'CHAIR PERSON')->where('Application_status', true),
             'ViceChairs' => $Candidates->where('Position', 'VICE CHAIRPERSON')->where('Application_status', true),
             'Secretarygens' => $Candidates->where('Position', 'SECRETARY GENERAL')->where('Application_status', true),
             'Academicsecretaries' => $Candidates->where('Position', 'TRESUARER')->where('Application_status', true),
@@ -75,7 +77,8 @@ class CandidateController extends Controller
         } catch (\Throwable $th) {
             DB::rollback();
             // handle your error
-            dd($th->getMessage());
+            //dd($th->getMessage());
+            return back()->with(['message' => 'You have already applied for a position']);
         }
 
         // Candidates::create(
@@ -89,7 +92,7 @@ class CandidateController extends Controller
         // );
         // });
 
-        return redirect()->back();
+        return redirect()->back()->with(['message' => 'Application successful']);
     }
 
     /**

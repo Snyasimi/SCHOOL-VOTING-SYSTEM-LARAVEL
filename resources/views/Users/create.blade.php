@@ -4,6 +4,16 @@
         
         <div class="container">
 
+            @if(session('message'))
+
+                <div class="notification is-info">
+
+                    <button class="delete"></button>
+                    Application sucessful please await approval
+
+                </div>
+            @endif
+
             <form action={{route('add_user')}} method="POST">
                 @csrf
     

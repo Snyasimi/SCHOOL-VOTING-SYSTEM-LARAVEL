@@ -16,6 +16,9 @@ use App\Http\Controllers\{UsersController,PositionsController,AuthController,Can
 
 Route::get('/', [UsersController::class,'index']);
 Route::get('Home',[UsersController::class,'index'])->name('Home');
+Route::get('Results',function(){
+    return view('AdminView.Results');
+});
 
 
 Route::get('login/',function(){
@@ -52,6 +55,7 @@ Route::get('Decline/{id}',[AdminController::class,'decline'])->name('decline_can
 Route::get('Admin/candidates',[AdminController::class,'candidates'])->name('view_candidates');
 Route::get('Change/{id}',[AdminController::class,'ChangeStatus'])->name('ChangeStatus');
 Route::post('Users/',[UsersController::class,'store'])->name('add_user');
+Route::match(['get','post'],'Results/',[AdminController::class,'Results'])->name('view_results');
 
 });
 
