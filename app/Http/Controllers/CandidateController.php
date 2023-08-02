@@ -69,6 +69,7 @@ class CandidateController extends Controller
             $Candidate->Slogan = $validate['Slogan'];
             $Candidate->path_to_image = $request->file('Image')->store('public/CandidateImgs');
             $Candidate->path_to_application_letter = $request->file('Application_letter')->store('public/Application_letters');
+            $Candidate->created_at = $Candidate->Voter->created_at;
             $Candidate->Votes = 0;
 
             $Candidate->save();

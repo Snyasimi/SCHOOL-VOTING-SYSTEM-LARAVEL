@@ -42,5 +42,19 @@ class UserSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ]);
         }
+        for($i=0;$i<10;$i++)
+        {
+            DB::table('users')->insert([
+                'id' => Str::ulid(),
+                'Name' => 'OldCandidate '.$i,
+                'Email' => 'Oldcandidate'.$i.'@gmail.com',
+                'RegNumber' => 'DIT/001/00'. $i,
+                'Has_voted' => false,
+                'is_admin' => false,
+                'password' => bcrypt('123456'),
+                'created_at' => Carbon::now()->subYears(2),
+                'updated_at' => Carbon::now()->subYears(2)
+            ]);
+        }
     }
 }
