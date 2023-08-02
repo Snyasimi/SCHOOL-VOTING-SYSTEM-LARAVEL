@@ -59,7 +59,35 @@ class UsersController extends Controller
         Auth::login($user);
         return redirect()->route('Home');
     }
+    public function Results()
+    {
 
+        
+            $year = now()->year;
+
+                return view('Users.Results')
+                        ->with([
+                            'Chairperson' => Candidates::with(['Voter'])->where('Application_status',true)->whereYear('created_at',$year)
+                            ->where('Position','CHAIRPERSON')->orderBy('Votes','desc')->limit(5)->lazy(),
+
+                            'ViceChairperson' => Candidates::where('Application_status',true)->whereYear('created_at',$year)
+                            ->where('Position','VICE CHAIRPERSON')->orderBy('Votes','desc')->limit(5)->lazy(),
+
+                            'Treasurer' => Candidates::where('Application_status',true)->whereYear('created_at',$year)
+                            ->where('Position','TREASURER')->orderBy('Votes','desc')->limit(5)->lazy(),
+
+                            'Secretarygeneral' => Candidates::where('Application_status',true)->whereYear('created_at',$year)
+                            ->where('Position','SECRETARY GENERAL')->orderBy('Votes','desc')->limit(5)->lazy(),
+
+                            'Sportsandwelfare' => Candidates::where('Application_status',true)->whereYear('created_at',$year)
+                            ->where('Position','SPORTS AND WELFARE')->orderBy('Votes','desc')->limit(5)->lazy()
+                        
+                        ]
+                    
+                    );
+        
+
+    }
     /**
      * Display the specified resource.
      */

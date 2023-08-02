@@ -51,6 +51,7 @@
                         <a href="{{ route('Candidate.index')}}" class="navbar-item">Vote</a>
                     @endunless
                     <a href="{{ route('Candidate.create')}}" class="navbar-item">Apply</a>
+                    <a href="{{ route('view_results') }}" class="navbar-item">Results</a>
                 @endauth
                
 

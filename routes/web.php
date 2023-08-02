@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function(){
     Route::put('vote',[VotingController::class,'vote'])->name('vote');
     Route::resource('Position',PositionsController::class);
     Route::resource('Candidate',CandidateController::class);
-    
+    Route::get('candidate/results',[UsersController::class,'Results'])->name('view_results');
     Route::get('logout/',[AuthController::class,'logout'])->name('logout');
 
 });
